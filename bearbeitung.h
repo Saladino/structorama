@@ -33,13 +33,13 @@ void loescheCD_nr (CD_Liste ** anker, int CD_nr);
 //Verwendet Funktion naechsteCD solange bis CD_nr erreicht ist.
 //Anschließend wird loescheCD ausgeführt.
 
-void sortiereSammlung (CD_Liste ** anker_alt);
+void sortiereSammlung (CD_Liste ** anker);
 //Elemente der alten Liste werden in eine neu-initialisierte Liste
 //solange übergeben, bis der anker_alt = NULL ist. Die Bedingung für die
 //Sortierung ist hier falsch herum, aufgrund des Last-In First-Out Stacks.(!)
 //anker_alt wird dann auf anker_neu gesetzt.
 
-CD_Liste ** einlesenDatei (void);
+CD_Liste ** einlesenDatei (void)
 //initListe wird ausgeführt um neue Liste zu erstellen.
 //Aus der Datei werden dann die Elemente hinzugefügt.
 
