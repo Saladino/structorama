@@ -1,16 +1,10 @@
-/*
-CD Strukturmodul:
-Der eigentliche Informationsträger im Programm. In diesem Modul
-sind die Daten der CD gespeichert.
-*/
-
 #ifndef CD_INFO
 #define CD_INFO
 
 //Deklarationen
 
 typedef struct songliste
-  {
+	{
 		int nummer;
 		char songname[20];
 	}
@@ -37,6 +31,5 @@ CD_Info;
 //Funktionen
 
 CD_Info * einlesenCD (void);
-void aendernInfo (CD_Info * cd);
 
 #endif
