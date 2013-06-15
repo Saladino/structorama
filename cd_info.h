@@ -1,3 +1,9 @@
+/*
+CD Strukturmodul:
+Der eigentliche Informationsträger im Programm. In diesem Modul
+sind die Daten der CD gespeichert.
+*/
+
 #ifndef CD_INFO
 #define CD_INFO
 
