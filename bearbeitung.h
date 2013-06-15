@@ -39,7 +39,7 @@ void sortiereSammlung (CD_Liste ** anker);
 //Sortierung ist hier falsch herum, aufgrund des Last-In First-Out Stacks.(!)
 //anker_alt wird dann auf anker_neu gesetzt.
 
-CD_Liste ** einlesenDatei (void)
+CD_Liste ** einlesenDatei (void);
 //initListe wird ausgeführt um neue Liste zu erstellen.
 //Aus der Datei werden dann die Elemente hinzugefügt.
 
