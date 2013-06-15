@@ -21,8 +21,8 @@ Dazu greift das Bearbeitungsmodul häufig auf das Listenmodul zu.
 void ausgebenSammlung (CD_Liste ** anker);
 //Liste wird nummeriert ausgegeben.
 
-void aendereCD (CD_Info * cd, int CD_nr);
-//Liste muss(!) für CD_nr davor nummeriert ausgegeben werden!!!
+void aendereCD (CD_Liste ** anker, int CD_nr);
+//Liste muss(!) für CD_nr davor nummeriert ausgegeben werden!!!(Wird in die main gepackt!)
 
 //Whileschleife für Änderung der Infos mit Endbedingung
 //Auswahl wie bei main-Funktion mit Nummern!
