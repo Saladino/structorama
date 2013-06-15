@@ -37,6 +37,6 @@ CD_Info;
 //Funktionen
 
 CD_Info * einlesenCD (void);
-void aendernCD (CD_Info * cd);
+void aendernInfo (CD_Info * cd);
 
 #endif
