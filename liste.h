@@ -15,11 +15,11 @@ typedef
 	} 
 CD_Liste;
    
-    CD_Liste ** initListe (void);
+    	void initListe (CD_Liste ** liste);
 	//Initialisierung einer neuen Liste mit NULL-Pointer
 	void einfuegenListe (CD_Liste ** liste, CD_Info * cd);
 	//Koppelt Daten der CD mit Knoten der Liste
-    void naechsteCD (CD_Liste ** liste);
+    	void naechsteCD (CD_Liste ** liste);
 	//Springt ein next weiter in der Liste.
 	void loescheCD (CD_Liste ** liste);
 	//Loescht die Daten der CD, den Knoten und überbrückt
