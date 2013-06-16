@@ -38,11 +38,6 @@ void aendereCD (CD_Liste ** anker, int CD_nr)
 	aendereMerkmal (tmp->info);
 }
 
-int compare (const void * a, const void * b)
-{
-  return ( *(int*)a - *(int*)b );
-}
-
 void aendereMerkmal (CD_Info * cd)
 {
 	int a, b, c, i = 0;
