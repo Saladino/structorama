@@ -43,7 +43,7 @@ CD_Liste ** einlesenDatei (void);
 //initListe wird ausgeführt um neue Liste zu erstellen.
 //Aus der Datei werden dann die Elemente hinzugefügt.
 
-void speichereListe (CD_Liste ** anker);
+void speichereListe (CD_Liste ** anker, int anzahl);
 //Die Liste wird in eine Datei geschrieben. Hierbei muss berücksichtigt werden,
 //ob es eine bereits gespeicherte Liste gibt und diese korrekt überschrieben
 //weden muss.
