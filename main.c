@@ -80,7 +80,7 @@ int main(void)
 			einfuegenListe (&anker, einlesenCD ());
 			break;
 		case 4:     //4 = Sortieren der Liste
-			sortiereSammlung (&anker);
+			anker = sortiereSammlung (&anker);
 			break;
 		case 5:     //5 = Anzeigen der Liste
 			ausgebenSammlung (&anker);
