@@ -200,25 +200,25 @@ CD_Liste* sortieren (CD_Liste ** anker, int a, int b)
 
 			if(b==1) switch(a)
 			{
-			case 1: if(tmp->info->cd_name<speicher->info->cd_name) speicher = tmp; schritt_s = schritt_t;
+			case 1: if(tmp->info->cd_name<speicher->info->cd_name) {speicher = tmp; schritt_s = schritt_t;}
 				break;
-			case 2: if(tmp->info->interpret_name<speicher->info->interpret_name) speicher = tmp; schritt_s = schritt_t;
+			case 2: if(tmp->info->interpret_name<speicher->info->interpret_name) {speicher = tmp; schritt_s = schritt_t;}
 				break;
-			case 3: if((10000*tmp->info->erscheinung.Jahr+100*tmp->info->erscheinung.Monat+tmp->info->erscheinung.Tag)<(10000*speicher->info->erscheinung.Jahr+100*speicher->info->erscheinung.Monat+speicher->info->erscheinung.Tag)) speicher = tmp; schritt_s = schritt_t;
+			case 3: if((10000*tmp->info->erscheinung.Jahr+100*tmp->info->erscheinung.Monat+tmp->info->erscheinung.Tag)<(10000*speicher->info->erscheinung.Jahr+100*speicher->info->erscheinung.Monat+speicher->info->erscheinung.Tag)) {speicher = tmp; schritt_s = schritt_t;}
 				break;
-			case 4: if(tmp->info->genre<speicher->info->genre) speicher = tmp; schritt_s = schritt_t;
+			case 4: if(tmp->info->genre<speicher->info->genre) {speicher = tmp; schritt_s = schritt_t;}
 				break;
 			}
 
 			if(b==2) switch(a)
 			{
-			case 1: if(tmp->info->cd_name>speicher->info->cd_name) speicher = tmp; schritt_s = schritt_t;
+			case 1: if(tmp->info->cd_name>speicher->info->cd_name) {speicher = tmp; schritt_s = schritt_t;}
 				break;
-			case 2: if(tmp->info->interpret_name>speicher->info->interpret_name) speicher = tmp; schritt_s = schritt_t;
+			case 2: if(tmp->info->interpret_name>speicher->info->interpret_name) {speicher = tmp; schritt_s = schritt_t;}
 				break;
-			case 3: if((10000*tmp->info->erscheinung.Jahr+100*tmp->info->erscheinung.Monat+tmp->info->erscheinung.Tag)>(10000*speicher->info->erscheinung.Jahr+100*speicher->info->erscheinung.Monat+speicher->info->erscheinung.Tag)) speicher = tmp; schritt_s = schritt_t;
+			case 3: if((10000*tmp->info->erscheinung.Jahr+100*tmp->info->erscheinung.Monat+tmp->info->erscheinung.Tag)>(10000*speicher->info->erscheinung.Jahr+100*speicher->info->erscheinung.Monat+speicher->info->erscheinung.Tag)) {speicher = tmp; schritt_s = schritt_t;}
 				break;
-			case 4: if(tmp->info->genre>speicher->info->genre) speicher = tmp; schritt_s = schritt_t;
+			case 4: if(tmp->info->genre>speicher->info->genre) {speicher = tmp; schritt_s = schritt_t;}
 				break;
 			}
 			tmp = tmp->next;
