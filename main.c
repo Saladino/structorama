@@ -30,7 +30,7 @@ CD_Liste ** lade_datei (void)
 
 void help(void)
 {
-		printf("(0) = Hilfe\n(1) = Speichern\n(2) = Aendern eines Elements\n(3) = Neues Element Einfügen\n(4) = Sotrieren der Liste\n(5) = Anzeigen der Aktuellen Liste\n(6) = Speichern der Liste\n(7) = Beenden des Programms\n");
+		printf("(1) = Hilfe\n(2) = Aendern eines Elements\n(3) = Neues Element Einfügen\n(4) = Sotrieren der Liste\n(5) = Anzeigen der Aktuellen Liste\n(6) = Speichern der Liste\n(7) = Beenden des Programms\n");
 }
 
 int main(void)
@@ -67,11 +67,8 @@ int main(void)
 		scanf("%i", &eingabe);
 		switch (eingabe)
 		{
-		case 0:    //0 = Hilfe
+		case 1:    //1 = Hilfe
 			help();
-			break;
-		case 1:    //1 = Speichern der Liste in Datei
-			speichereListe (anker);
 			break;
 		case 2:    //2 = Ändern eines Elements
 			printf("Bitte die Nummer der zu aendernden CD eingeben.\n");
