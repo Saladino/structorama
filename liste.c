@@ -1,28 +1,40 @@
 #include "liste.h"
+#include <stdlib.h>
 
 void initListe (CD_Liste ** liste)
 //Initialisierung einer neuen Liste mit NULL-Pointer
 {
-	liste = NULL;
+	*liste = NULL;
 }
 
 
 void einfuegenListe (CD_Liste ** liste, CD_Info * cd)
 //Koppelt Daten der CD mit Knoten der Liste
 {
-	CD_Liste * letztes_element = *liste;
-	CD_Liste * neues_element;
-	int i;
-
-	for (i=0; (letztes_element->next != NULL); i++)
+	CD_Liste * letztes_element = NULL;
+	CD_Liste * neues_element = NULL;
+	int i = 0;
+	if (*liste!=NULL)
 	{
-		letztes_element = letztes_element->next;
-	}
+		letztes_element = *liste;
 
-	neues_element = (CD_Liste*) malloc(sizeof(CD_Liste));
-	letztes_element->next = neues_element;
-	neues_element->info = cd;
-	neues_element->next = NULL;
+		for (i=0; ((letztes_element->next)!=NULL); i++)
+		{
+			letztes_element = letztes_element->next;
+		}
+	
+		neues_element = (CD_Liste*) malloc(8);
+		letztes_element->next = neues_element;
+		neues_element->info = cd;
+		neues_element->next = NULL;
+	}
+	else
+	{
+		neues_element = (CD_Liste*) malloc(8);
+		neues_element->info = cd;
+		neues_element->next = NULL;
+		*liste = neues_element;
+	}
 }
 
 
