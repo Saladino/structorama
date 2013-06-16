@@ -1,7 +1,7 @@
 #include "bearbeitung.h"
 
 void aendereMerkmal (CD_Info * cd);
-void sortieren (CD_Liste ** anker, int a, int b);
+CD_Liste* sortieren (CD_Liste ** anker, int a, int b);
 
 void ausgebenSammlung (CD_Liste ** anker)
 {
@@ -158,30 +158,31 @@ void loescheCD_nr (CD_Liste ** anker, int CD_nr)
 	loescheCD (anker, tmp);
 }
 
-void sortiereSammlung (CD_Liste ** anker)
+CD_Liste* sortiereSammlung (CD_Liste ** anker)
 {
 	int a, b;
 	printf("\nGeben Sie die in der Klammer stehenden Nummer fuer das jeweilige Sortierkriterium an und bestaetigen Sie mit [ENTER]");
-	
+
 	do{
-	printf("\nNamen(1) Interpret(2) Erscheinungsdatum(3) Genre(4)\n");
-	scanf("%i", &a);
+		printf("\nNamen(1) Interpret(2) Erscheinungsdatum(3) Genre(4)\n");
+		scanf("%i", &a);
 	} while((a<1)||(4<a));
-	
+
 	do{
-	printf("\nVorwaerts(1) oder Rueckwaerts(2): ");
-	scanf("%i", &b);
+		printf("\nVorwaerts(1) oder Rueckwaerts(2): ");
+		scanf("%i", &b);
 	} while((b<1)||(2<b));
-	sortieren (anker, a, b);
+	return sortieren (anker, a, b);
 }
 
-void sortieren (CD_Liste ** anker, int a, int b)
+CD_Liste* sortieren (CD_Liste ** anker, int a, int b)
 {
 	CD_Liste *neu;
 	CD_Liste *tmp;
 	CD_Liste *tmp2;
 	CD_Liste *speicher;
 	int i = 0;
+	int j = 0;
 	int schritt_t = 0;
 	int schritt_s = 0;
 	neu = (CD_Liste*) malloc(sizeof(CD_Liste));
@@ -220,10 +221,10 @@ void sortieren (CD_Liste ** anker, int a, int b)
 			case 4: if(tmp->info->genre>speicher->info->genre) speicher = tmp; schritt_s = schritt_t;
 				break;
 			}
-			naechsteCD (tmp);
+			tmp = tmp->next;
 			schritt_t++;
 		}
-		if(tmp2 == NULL)
+		if(j == 0)
 		{
 			neu = speicher;
 			tmp2 = speicher;
@@ -231,7 +232,7 @@ void sortieren (CD_Liste ** anker, int a, int b)
 		else
 		{
 			tmp2->next = speicher;
-			naechsteCD (tmp2);
+			tmp2 = tmp2->next;
 		}
 		tmp = *anker;
 		if (schritt_s==0) *anker = speicher->next;
@@ -240,10 +241,10 @@ void sortieren (CD_Liste ** anker, int a, int b)
 			for(i=1; i<schritt_s; i++) tmp = tmp->next;
 			tmp->next = speicher->next;
 		}
-
+	j++;
 	}
 	tmp2->next = NULL;
-	*anker = neu;
+	return neu;
 }
 
 void einlesenDatei (CD_Liste **anker)
