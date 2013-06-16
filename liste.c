@@ -3,8 +3,7 @@
 void initListe (CD_Liste ** liste)
 //Initialisierung einer neuen Liste mit NULL-Pointer
 {
-	CD_Liste * liste;
-	liste = NULL;
+	*liste = NULL;
 }
 
 
@@ -51,4 +50,18 @@ void loescheCD (CD_Liste ** liste, CD_Liste * element)
 	voriges_element->next = element->next;
 	free(element->info);
 	free(element);
+}
+
+int dateivorhanden (void)
+//Prüft, ob eine Datei mit dit einer Gespeicherten Liste vorhanden ist.
+//Gibt -1 zurück, falls keine datei vorhanden ist, sonst 1.
+{
+	FILE *tmp = fopen(DAT_NAME,"r");
+	if (tmp==NULL)
+		return -1;
+	else
+	{
+		fclose(tmp);
+		return 1;
+	}
 }
