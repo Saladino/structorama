@@ -41,7 +41,7 @@ int main(void)
 	int ende = 0;
 	int datei_vorhanden;
 	CD_Liste **anker = NULL;
-	int *eingabe;
+	int eingabe;
 	int cd_nummer;
 
 
@@ -64,9 +64,8 @@ int main(void)
 	help();
 	while(ende==0)
 	{
-		eingabe = NULL;
-		scanf("%i", eingabe);
-		switch (*eingabe)
+		scanf("%i", &eingabe);
+		switch (eingabe)
 		{
 		case 0:    //0 = Hilfe
 			help();
