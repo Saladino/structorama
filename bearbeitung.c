@@ -91,24 +91,23 @@ void aendereMerkmal (CD_Info * cd)
 			} while((b<1)||(4<b));
 			
 			switch(b)
-			{
 			case 1:
 				{
 					printf("Geben Sie den Songnamen an: ");
-					scanf("%s", cd->song[cd->song_anzahl]);
+					scanf("%s", &(cd->song[cd->song_anzahl].songname));
 					cd->song_anzahl++;
 				}
 				break;
 			case 2:
 				{
-					for(i=0; cd->song_anzahl > i; i++)
+					for(i=0; i < cd->song_anzahl; i++)
 					{
-					if(i==0) printf("%i. %s", i+1, cd->song[i].songname);
-					else printf(", %i. %s", i+1, cd->song[i].songname);
+						if(i==0) printf("%i. %s", i+1, cd->song[i].songname);
+						else printf(", %i. %s", i+1, cd->song[i].songname);
 					}
 					do{
-					printf("Eingabe der Songnummer um diesen zu loeschen: ");
-					scanf("%i", &c);
+						printf("\nEingabe der Songnummer um diesen zu loeschen: ");
+						scanf("%i", &c);
 					} while((c<1)||(cd->song_anzahl<c));
 					for(i=c; i < cd->song_anzahl; i++) strcpy(cd->song[i-1].songname, cd->song[i].songname);
 					cd->song_anzahl--;
@@ -116,21 +115,34 @@ void aendereMerkmal (CD_Info * cd)
 				break;
 			case 3:
 				{
-					for(i=0; cd->song_anzahl > i; i++)
+					for(i=0; i < cd->song_anzahl; i++)
 					{
-					if(i==0) printf("%i. %s", i+1, cd->song[i].songname);
-					else printf(", %i. %s", i+1, cd->song[i].songname);
+						if(i==0) printf("%i. %s", i+1, cd->song[i].songname);
+						else printf(", %i. %s", i+1, cd->song[i].songname);
 					}
 					do{
-					printf("Eingabe der Songnummer um diesen zu veraendern: ");
-					scanf("%i", &c);
+						printf("\nEingabe der Songnummer um diesen zu veraendern: ");
+						scanf("%i", &c);
 					} while((c<1)||(cd->song_anzahl<c));
+					printf("Geben Sie den neuen Namen fuer %i an: ", c);
 					scanf("%s", cd->song[c-1].songname);
 				}
 				break;
-			case 4: 
+			case 4:
 				{
-				qsort (cd->song, cd->song_anzahl, sizeof(Songs), compare);
+					for(i=0; i<cd->song_anzahl-1; i++)
+					{
+						s = i;
+						for(j=i+1; j<cd->song_anzahl; j++)
+						{
+							if(cd->song[j].songname[0]<cd->song[s].songname[0])
+							{
+								strcpy(speicher, cd->song[s].songname);
+								strcpy(cd->song[s].songname, cd->song[j].songname);
+								strcpy(cd->song[j].songname, speicher);
+							}
+						}
+					}
 				}
 				break;
 			}
