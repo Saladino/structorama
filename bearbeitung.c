@@ -5,28 +5,29 @@ CD_Liste* sortieren (CD_Liste ** anker, int a, int b);
 
 void ausgebenSammlung (CD_Liste ** anker)
 {
-    int i = 1, j = 0;
-    CD_Liste *tmp = *anker;
+	int i = 1, j = 0;
+	CD_Liste *tmp = *anker;
 
 
-    while (tmp != NULL)
-    {
-        printf("\nCD Nummer:         %i", i);
-        printf("\nCD Name:             %s", tmp->info->cd_name);
-        printf("\nInterpret:         %s", tmp->info->interpret_name);
-        printf("\nErscheinungsdatum: %i.%i.%i", tmp->info->erscheinung.Tag, tmp->info->erscheinung.Monat, tmp->info->erscheinung.Jahr);
-        printf("\nGenre:             %s", tmp->info->genre);
-        printf("\nSongs:             ");
-        while (tmp->info->song_anzahl > j)
-        {
+	while (tmp != NULL)
+	{
+		printf("\nCD Nummer:         %i", i);
+		printf("\nCD Name:           %s", tmp->info->cd_name);
+		printf("\nInterpret:         %s", tmp->info->interpret_name);
+		printf("\nErscheinungsdatum: %i.%i.%i", tmp->info->erscheinung.Tag, tmp->info->erscheinung.Monat, tmp->info->erscheinung.Jahr);
+		printf("\nGenre:             %s", tmp->info->genre);
+		printf("\nSongs:             ");
+		while (tmp->info->song_anzahl > j)
+		{
 			if(j==0) printf("%i. %s", j+1, tmp->info->song[j].songname);
 			else printf(", %i. %s", j+1, tmp->info->song[j].songname);
 			j++;
-        }
+		}
 		j=0;
-        i++;
-        tmp= tmp->next;
-    }
+		i++;
+		tmp= tmp->next;
+		printf("\n");
+	}
 	printf("\n");
 }
 
@@ -36,6 +37,11 @@ void aendereCD (CD_Liste ** anker, int CD_nr)
 	CD_Liste *tmp = *anker;
 	for (i=1; i < CD_nr; i++) tmp = tmp->next;
 	aendereMerkmal (tmp->info);
+}
+
+int compare (const void * a, const void * b)
+{
+	return ( *(int*)a - *(int*)b );
 }
 
 void aendereMerkmal (CD_Info * cd)
@@ -154,8 +160,9 @@ void loescheCD_nr (CD_Liste ** anker, int CD_nr)
 {
 	int i = 1;
 	CD_Liste *tmp = *anker;
-	for (i=1; i < CD_nr; i++) naechsteCD (tmp);
+	for (i=1; i < CD_nr; i++) tmp=tmp->next;
 	loescheCD (anker, tmp);
+	//free(tmp);
 }
 
 CD_Liste* sortiereSammlung (CD_Liste ** anker)
@@ -201,25 +208,25 @@ CD_Liste* sortieren (CD_Liste ** anker, int a, int b)
 			if(b==1) switch(a)
 			{
 			case 1: if(tmp->info->cd_name<speicher->info->cd_name) {speicher = tmp; schritt_s = schritt_t;}
-				break;
+					break;
 			case 2: if(tmp->info->interpret_name<speicher->info->interpret_name) {speicher = tmp; schritt_s = schritt_t;}
-				break;
+					break;
 			case 3: if((10000*tmp->info->erscheinung.Jahr+100*tmp->info->erscheinung.Monat+tmp->info->erscheinung.Tag)<(10000*speicher->info->erscheinung.Jahr+100*speicher->info->erscheinung.Monat+speicher->info->erscheinung.Tag)) {speicher = tmp; schritt_s = schritt_t;}
-				break;
+					break;
 			case 4: if(tmp->info->genre<speicher->info->genre) {speicher = tmp; schritt_s = schritt_t;}
-				break;
+					break;
 			}
 
 			if(b==2) switch(a)
 			{
 			case 1: if(tmp->info->cd_name>speicher->info->cd_name) {speicher = tmp; schritt_s = schritt_t;}
-				break;
+					break;
 			case 2: if(tmp->info->interpret_name>speicher->info->interpret_name) {speicher = tmp; schritt_s = schritt_t;}
-				break;
+					break;
 			case 3: if((10000*tmp->info->erscheinung.Jahr+100*tmp->info->erscheinung.Monat+tmp->info->erscheinung.Tag)>(10000*speicher->info->erscheinung.Jahr+100*speicher->info->erscheinung.Monat+speicher->info->erscheinung.Tag)) {speicher = tmp; schritt_s = schritt_t;}
-				break;
+					break;
 			case 4: if(tmp->info->genre>speicher->info->genre) {speicher = tmp; schritt_s = schritt_t;}
-				break;
+					break;
 			}
 			tmp = tmp->next;
 			schritt_t++;
@@ -241,7 +248,7 @@ CD_Liste* sortieren (CD_Liste ** anker, int a, int b)
 			for(i=1; i<schritt_s; i++) tmp = tmp->next;
 			tmp->next = speicher->next;
 		}
-	j++;
+		j++;
 	}
 	tmp2->next = NULL;
 	return neu;
@@ -276,10 +283,11 @@ void speichereListe (CD_Liste ** anker)
 	rewind(bin);
 	while(tmp != NULL)
 	{
-			fwrite(tmp->info, sizeof(CD_Info), 1, bin);
-			tmp = tmp->next;
-			i++;
+		fwrite(tmp->info, sizeof(CD_Info), 1, bin);
+		tmp = tmp->next;
+		i++;
 	}
 	fwrite(&i, sizeof(int), 1, bin);
 	fclose(bin);
 }
+
