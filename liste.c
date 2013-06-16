@@ -79,3 +79,4 @@ int dateivorhanden (void)
 		return 1;
 	}
 }
+
