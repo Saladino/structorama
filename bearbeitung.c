@@ -1,5 +1,7 @@
 #include "bearbeitung.h"
 
+void aendereMerkmal (CD_Info * cd);
+
 void ausgebenSammlung (CD_Liste ** anker)
 {
 	int i = 1, j = 0;
@@ -164,11 +166,13 @@ void sortieren (CD_Liste ** anker, int a, int b)
 	int schritt_t = 0;
 	int schritt_s = 0;
 	CD_Liste **neu;
-	initListe(neu);
-	neu = (CD_Liste**) malloc(sizeof(CD_Liste**));
-	CD_Liste *tmp = *anker;	 //Pointer um Liste wiederholt durchzugehn.
-	CD_Liste *tmp2 = *neu;
-	CD_Liste *speicher = *anker; //Pointer mit dem höchsten jeweiligen Wert.
+	CD_Liste *tmp;
+	CD_Liste *tmp2;
+	CD_Liste *speicher;
+	*neu = (CD_Liste*) malloc(sizeof(CD_Liste*));
+	tmp = *anker; //Pointer um Liste wiederholt durchzugehn.
+	tmp2 = *neu;
+	speicher = *anker; //Pointer mit dem höchsten jeweiligen Wert.
 
 	while(*anker != NULL)
 	{
@@ -231,25 +235,20 @@ void sortieren (CD_Liste ** anker, int a, int b)
 
 CD_Liste ** einlesenDatei (void)
 {
-	int i=1;
 	CD_Liste **anker = NULL;
 	CD_Info *tmp = NULL;
 	CD_Info *tmp2 = NULL;
 	FILE * bin;
 	bin = fopen(DAT_NAME, "r+b");
-	fseek(bin, 0, SEEK_SET);
+	fseek(bin, 0, SEEK_END);
 	fread(tmp2, sizeof(CD_Info), 1, bin);
-	if(tmp2!=EOF)
+	fseek(bin, 0, SEEK_SET);
+	fread(tmp, sizeof(CD_Info), 1, bin);
+	while(tmp != tmp2)
 	{
-		while(tmp2!=EOF)
-		{
-			fread(tmp, sizeof(CD_Info), 1, bin);
-			if(i==1) *anker = tmp;
-			fseek(bin, (i)* sizeof(CD_Info), SEEK_SET);
-			fread(tmp2, sizeof(CD_Info), 1, bin);
-			einfuegenListe (anker, tmp);
-			i++;
-		}
+		einfuegenListe(anker, tmp);
+		fseek(bin, sizeof(CD_Info), SEEK_CUR);
+		fread(tmp, sizeof(CD_Info), 1, bin);
 	}
 	fclose(bin);
 	return anker;
