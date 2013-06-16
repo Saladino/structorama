@@ -1,6 +1,7 @@
 #include "bearbeitung.h"
 
 void aendereMerkmal (CD_Info * cd);
+void sortieren (CD_Liste ** anker, int a, int b);
 
 void ausgebenSammlung (CD_Liste ** anker)
 {
