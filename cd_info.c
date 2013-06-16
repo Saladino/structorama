@@ -33,4 +33,5 @@ CD_Info * einlesenCD (void)
 		printf("\nSong %i: ", i+1);
 		scanf("%s", cd->song[i].songname);
 	}
+	return cd;
 }
