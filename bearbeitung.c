@@ -40,11 +40,13 @@ void aendereCD (CD_Liste ** anker, int CD_nr)
 
 void aendereMerkmal (CD_Info * cd)
 {
-	int a, b, c, i = 0;
+	int a, b, c, i = 0, j = 0;
+	char speicher[20];
+	int s;
 	printf("\nGeben Sie die in der Klammer stehenden Nummer an und bestaetigen Sie mit [ENTER]");
 	do{
-	printf("\nNamen(1) Interpret(2) Erscheinungsdatum(3) Genre(4) Songs(5)\n");
-	scanf("%i", &a);
+		printf("\nNamen(1) Interpret(2) Erscheinungsdatum(3) Genre(4) Songs(5)\n");
+		scanf("%i", &a);
 	} while((a<1)||(5<a));
 
 	switch(a)
@@ -64,11 +66,11 @@ void aendereMerkmal (CD_Info * cd)
 	case 3:
 		{
 			printf("Tag eingeben: ");
-			scanf("%i", cd->erscheinung.Tag);
+			scanf("%i", &(cd->erscheinung.Tag));
 			printf("Monat eingeben: ");
-			scanf("%i", cd->erscheinung.Monat);
+			scanf("%i", &(cd->erscheinung.Monat));
 			printf("Jahr eingeben: ");
-			scanf("%i", cd->erscheinung.Jahr);
+			scanf("%i", &(cd->erscheinung.Jahr));
 		}
 		break;
 	case 4:
@@ -81,11 +83,12 @@ void aendereMerkmal (CD_Info * cd)
 		{
 			printf("\nGeben Sie die in der Klammer stehenden Nummer an und bestaetigen Sie mit [ENTER]");
 			do{
-			printf("\nHinzufuegen(1) Loeschen(2) Veraendern(3) Sortieren(4)\n");
-			scanf("%i", &b);
+				printf("\nHinzufuegen(1) Loeschen(2) Veraendern(3) Sortieren(4)\n");
+				scanf("%i", &b);
 			} while((b<1)||(4<b));
-			
+
 			switch(b)
+			{
 			case 1:
 				{
 					printf("Geben Sie den Songnamen an: ");
