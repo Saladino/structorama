@@ -16,28 +16,28 @@ sind die Daten der CD gespeichert.
 //Deklarationen
 
 typedef struct songliste
-	{
-		char songname[20];
-	}
+{
+	char songname[20];
+}
 Songs;
 
 typedef struct erscheinungsdatum
-	{
-		int Tag;
-		int Monat;
-		int Jahr;
-	}
+{
+	int Tag;
+	int Monat;
+	int Jahr;
+}
 Datum;
 
 typedef struct cd_info
-	{ 
-		char cd_name [21];
-		char interpret_name [21];
-		int song_anzahl;
-		Songs song[21];
-		char genre [21];
-		Datum erscheinung;
-	}
+{ 
+	char cd_name [21];
+	char interpret_name [21];
+	int song_anzahl;
+	Songs song[21];
+	char genre [21];
+	Datum erscheinung;
+}
 CD_Info;
 
 //Funktionen
