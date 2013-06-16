@@ -95,14 +95,14 @@ int main(void)
 			ende = 1;
 			break;
 		case 8:		//8 = Element Löschen
-			printf("Bitte geben sie die Nummer der zu loeschenden CD an");
+			printf("Bitte geben sie die Nummer der zu loeschenden CD an\n");
 			scanf("%i", &cd_nummer);
 			loescheCD_nr (&anker, cd_nummer);
+			break;
 		default:
 			printf("Fehlerhafte eingabe, bitte versuchen sie es erneut.\n");
-			help();
 		}
-		
+		printf("\n");
 	}
 
 //Herunterfahren des Programms
