@@ -231,7 +231,7 @@ CD_Liste ** einlesenDatei (void)
 
 }
 
-void speichereListe (CD_Liste ** anker)
+void speichereListe (CD_Liste ** anker, int anzahl)
 {
 
 }
