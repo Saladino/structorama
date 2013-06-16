@@ -2,7 +2,7 @@
 
 void ausgebenSammlung (CD_Liste ** anker)
 {
-  int i = 1, j = 0;
+	int i = 1, j = 0;
 	CD_Liste *tmp = *anker;
 
 	while (tmp != NULL)
@@ -137,8 +137,8 @@ void loescheCD_nr (CD_Liste ** anker, int CD_nr)
 {
 	int i = 1;
 	CD_Liste *tmp = *anker;
-	for (i=1; i < CD_nr; i++) tmp = tmp->next;
-	loescheCD (tmp->info);
+	for (i=1; i < CD_nr; i++) naechsteCD (tmp);
+	loescheCD (anker, tmp);
 }
 
 void sortiereSammlung (CD_Liste ** anker)
@@ -160,12 +160,15 @@ void sortiereSammlung (CD_Liste ** anker)
 
 void sortieren (CD_Liste ** anker, int a, int b)
 {
-	CD_Liste **neu = initliste();
+	int i = 0;
+	int schritt_t = 0;
+	int schritt_s = 0;
+	CD_Liste **neu;
+	initListe(neu);
+	neu = (CD_Liste**) malloc(sizeof(CD_Liste**));
 	CD_Liste *tmp = *anker;	 //Pointer um Liste wiederholt durchzugehn.
 	CD_Liste *tmp2 = *neu;
 	CD_Liste *speicher = *anker; //Pointer mit dem höchsten jeweiligen Wert.
-	int schritt_t = 0;
-	int schritt_s = 0;
 
 	while(*anker != NULL)
 	{
@@ -175,7 +178,7 @@ void sortieren (CD_Liste ** anker, int a, int b)
 		schritt_s = 0;
 		while(tmp != NULL)
 		{
-			tmp = tmp->next;
+			naechsteCD (tmp);
 			schritt_t++;
 			
 			if(b==1) switch(a)
@@ -211,7 +214,7 @@ void sortieren (CD_Liste ** anker, int a, int b)
 		else
 		{
 			tmp2->next = speicher;
-			tmp2 = tmp2->next;
+			naechsteCD (tmp2);
 		}
 		tmp = *anker;
 		if (schritt_s==0) *anker = speicher->next;
@@ -228,10 +231,39 @@ void sortieren (CD_Liste ** anker, int a, int b)
 
 CD_Liste ** einlesenDatei (void)
 {
-
+	int i=1;
+	CD_Liste **anker = NULL;
+	CD_Info *tmp = NULL;
+	CD_Info *tmp2 = NULL;
+	FILE * bin;
+	bin = fopen(DAT_NAME, "r+b");
+	fseek(bin, 0, SEEK_SET);
+	fread(tmp2, sizeof(CD_Info), 1, bin);
+	if(tmp2!=EOF)
+	{
+		while(tmp2!=EOF)
+		{
+			fread(tmp, sizeof(CD_Info), 1, bin);
+			if(i==1) *anker = tmp;
+			fseek(bin, (i)* sizeof(CD_Info), SEEK_SET);
+			fread(tmp2, sizeof(CD_Info), 1, bin);
+			einfuegenListe (anker, tmp);
+			i++;
+		}
+	}
+	fclose(bin);
+	return anker;
 }
 
 void speichereListe (CD_Liste ** anker)
 {
-
+	FILE * bin;
+	CD_Liste *tmp = *anker;
+	bin = fopen(DAT_NAME, "r+b");
+	rewind(bin);
+	while(tmp != NULL)
+	{
+			fwrite(tmp->info, sizeof(CD_Info), 1, bin);
+			naechsteCD (tmp);
+	}
 }
