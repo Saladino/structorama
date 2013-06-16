@@ -15,7 +15,7 @@ typedef
 	} 
 CD_Liste;
    
-    CD_Liste ** liste initListe (void);
+    CD_Liste ** initListe (void);
 	//Initialisierung einer neuen Liste mit NULL-Pointer
 	void einfuegenListe (CD_Liste ** liste, CD_Info * cd);
 	//Koppelt Daten der CD mit Knoten der Liste
