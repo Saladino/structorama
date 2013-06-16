@@ -13,7 +13,7 @@ kann. Hier findet der Aufruf der Funktionen statt.
 
 void help(void)
 {
-		printf("(1) = Hilfe\n(2) = Aendern eines Elements\n(3) = Neues Element Einfuegen\n(4) = Sortieren der Liste\n(5) = Anzeigen der Aktuellen Liste\n(6) = Speichern der Liste\n(7) = Beenden des Programms\n");
+		printf("(1) = Hilfe\n(2) = Aendern eines Elements\n(3) = Neues Element Einfuegen\n(4) = Sortieren der Liste\n(5) = Anzeigen der Aktuellen Liste\n(6) = Speichern der Liste\n(7) = Beenden des Programms\n(8) = Loeschen einer CD\n");
 }
 
 int main(void)
@@ -24,7 +24,8 @@ int main(void)
 	int ende = 0;
 	int datei_vorhanden;
 	CD_Liste *anker = NULL;
-	int eingabe;
+	int eingabe1;
+	char eingabe2;
 	int cd_nummer;
 
 
@@ -35,20 +36,20 @@ int main(void)
 	{
 		do
 		{
-			printf("Es wurde eine gespeicherte CD-Sammlung gefunden, soll diese Geladen werden?\n");
-			scanf("%c", &eingabe);
+			printf("Es wurde eine gespeicherte CD-Sammlung gefunden, soll diese Geladen werden?(y/n)\n");
+			scanf("%c", &eingabe2);
 
-			if ('y' == eingabe)
+			if ('y' == eingabe2)
 			{
 				einlesenDatei(&anker);
 			}
-			else if (eingabe != 'y' && eingabe != 'n')
+			else if (eingabe2 != 'n')
 			{
 				printf("Ungueltige Eingabe!\n");
 			
 			}
 		}
-		while (eingabe != 'y' && eingabe != 'n');
+		while (eingabe2 != 'y' && eingabe2 != 'n');
 	}
 	else if (datei_vorhanden!=-1 && datei_vorhanden!=1)
 	{
@@ -59,12 +60,13 @@ int main(void)
 
 
 //Benutzeroberfläche
-	help();
+	
 	while(ende==0)
 	{
 		printf("Bitte befehl eingeben\n");
-		scanf("%i", &eingabe);
-		switch (eingabe)
+		help();
+		scanf("%i", &eingabe1);
+		switch (eingabe1)
 		{
 		case 1:    //1 = Hilfe
 			help();
@@ -92,6 +94,10 @@ int main(void)
 		case 7:     //7 = Beenden
 			ende = 1;
 			break;
+		case 8:		//8 = Element Löschen
+			printf("Bitte geben sie die Nummer der zu loeschenden CD an");
+			scanf("%i", &cd_nummer);
+			loescheCD_nr (&anker, cd_nummer);
 		default:
 			printf("Fehlerhafte eingabe, bitte versuchen sie es erneut.\n");
 			help();
@@ -102,4 +108,3 @@ int main(void)
 //Herunterfahren des Programms
 	return 0;
 }
-
