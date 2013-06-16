@@ -51,17 +51,19 @@ void loescheCD (CD_Liste ** liste, CD_Liste * element)
 {
 	CD_Liste * naechstes_element = element->next;
 	CD_Liste * voriges_element = * liste;
-	int i;
 
-	do
+	if (voriges_element != NULL && voriges_element != element)
 	{
-		voriges_element = voriges_element->next;
+		while (voriges_element->next != element && voriges_element != element)
+		{
+			voriges_element = voriges_element->next;
+		}
 	}
-	while (voriges_element->next != element);
-
+	if (*liste == element)
+		*liste = element->next;
+	else
 	voriges_element->next = element->next;
-	free(element->info);
-	free(element);
+	free((element->info));
 }
 
 int dateivorhanden (void)
