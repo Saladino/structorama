@@ -5,25 +5,29 @@ void sortieren (CD_Liste ** anker, int a, int b);
 
 void ausgebenSammlung (CD_Liste ** anker)
 {
-	int i = 1, j = 0;
-	CD_Liste *tmp = *anker;
+    int i = 1, j = 0;
+    CD_Liste *tmp = *anker;
 
-	while (tmp != NULL)
-	{
-		printf("\nCD Nummer:		 %i", i);
-		printf("\nCD Name:			 %s", tmp->info->cd_name);
-		printf("\nInterpret:		 %s", tmp->info->interpret_name);
-		printf("\nErscheinungsdatum: %i.%i.%i", tmp->info->erscheinung.Tag, tmp->info->erscheinung.Monat, tmp->info->erscheinung.Jahr);
-		printf("\nGenre:			 %s", tmp->info->genre);
-		printf("\nSongs:			 ");
-		while (tmp->info->song_anzahl >= j)
-		{
-		if(j==0) printf("%i. %s", j+1, tmp->info->song[j].songname);
-		else printf(", %i. %s", j+1, tmp->info->song[j].songname);
-		j++;
-		}
-		i++;
-	}
+
+    while (tmp != NULL)
+    {
+        printf("\nCD Nummer:         %i", i);
+        printf("\nCD Name:             %s", tmp->info->cd_name);
+        printf("\nInterpret:         %s", tmp->info->interpret_name);
+        printf("\nErscheinungsdatum: %i.%i.%i", tmp->info->erscheinung.Tag, tmp->info->erscheinung.Monat, tmp->info->erscheinung.Jahr);
+        printf("\nGenre:             %s", tmp->info->genre);
+        printf("\nSongs:             ");
+        while (tmp->info->song_anzahl > j)
+        {
+			if(j==0) printf("%i. %s", j+1, tmp->info->song[j].songname);
+			else printf(", %i. %s", j+1, tmp->info->song[j].songname);
+			j++;
+        }
+		j=0;
+        i++;
+        tmp= tmp->next;
+    }
+	printf("\n");
 }
 
 void aendereCD (CD_Liste ** anker, int CD_nr)
