@@ -240,32 +240,37 @@ void sortieren (CD_Liste ** anker, int a, int b)
 
 void einlesenDatei (CD_Liste **anker)
 {
-	CD_Info *tmp = NULL;
-	CD_Info *tmp2 = NULL;
+	int anzahl, i;
+	CD_Info *tmp = (CD_Info*) malloc(sizeof(CD_Info));
+	CD_Info *tmp2 = (CD_Info*) malloc(sizeof(CD_Info));
 	FILE * bin;
 	bin = fopen(DAT_NAME, "r+b");
-	fseek(bin, 0, SEEK_END);
-	fread(tmp2, sizeof(CD_Info), 1, bin);
+	fseek(bin, -sizeof(int), SEEK_END);
+	fread(&anzahl, sizeof(CD_Info), 1, bin);
 	fseek(bin, 0, SEEK_SET);
-	fread(tmp, sizeof(CD_Info), 1, bin);
-	while(tmp != tmp2)
+	for (i=0; i<anzahl;i++)
 	{
-		einfuegenListe(*anker, tmp);
-		fseek(bin, sizeof(CD_Info), SEEK_CUR);
 		fread(tmp, sizeof(CD_Info), 1, bin);
+		fseek(bin, 0, SEEK_CUR);
+		einfuegenListe(anker, tmp);
+		tmp = (CD_Info*) malloc(sizeof(CD_Info));
 	}
 	fclose(bin);
 }
 
 void speichereListe (CD_Liste ** anker)
 {
+	int i = 0;
 	FILE * bin;
 	CD_Liste *tmp = *anker;
-	bin = fopen(DAT_NAME, "r+b");
+	bin = fopen(DAT_NAME, "w+b");
 	rewind(bin);
 	while(tmp != NULL)
 	{
 			fwrite(tmp->info, sizeof(CD_Info), 1, bin);
-			naechsteCD (tmp);
+			tmp = tmp->next;
+			i++;
 	}
+	fwrite(&i, sizeof(int), 1, bin);
+	fclose(bin);
 }
