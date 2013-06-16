@@ -27,7 +27,7 @@ CD_Liste;
 	//Loescht die Daten der CD, den Knoten und überbrückt
 	//den vorherigen und den naechsten Knoten.
 	int dateivorhanden (void);
-	//Prüft, ob eine Datei mit dit einer Gespeicherten Liste vorhanden ist.
+	//Prüft, ob eine Datei mit einer Gespeicherten Liste vorhanden ist.
 	//Gibt -1 zurück, falls keine datei vorhanden ist, sonst 1.
 
 #endif
