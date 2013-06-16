@@ -3,7 +3,7 @@
 void initListe (CD_Liste ** liste)
 //Initialisierung einer neuen Liste mit NULL-Pointer
 {
-	*liste = NULL;
+	liste = NULL;
 }
 
 
