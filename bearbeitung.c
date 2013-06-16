@@ -185,7 +185,6 @@ void sortieren (CD_Liste ** anker, int a, int b)
 	tmp = *anker; //Pointer um Liste wiederholt durchzugehn.
 	tmp2 = neu;
 	speicher = *anker; //Pointer mit dem höchsten jeweiligen Wert.
-	getch();
 	while(*anker != NULL)
 	{
 		speicher = *anker;
@@ -194,38 +193,37 @@ void sortieren (CD_Liste ** anker, int a, int b)
 		schritt_s = 0;
 		while(tmp != NULL)
 		{
-			naechsteCD (tmp);
-			schritt_t++;
-			
+
 			if(b==1) switch(a)
 			{
 			case 1: if(tmp->info->cd_name<speicher->info->cd_name) speicher = tmp; schritt_s = schritt_t;
-			break;
+				break;
 			case 2: if(tmp->info->interpret_name<speicher->info->interpret_name) speicher = tmp; schritt_s = schritt_t;
-			break;
+				break;
 			case 3: if((10000*tmp->info->erscheinung.Jahr+100*tmp->info->erscheinung.Monat+tmp->info->erscheinung.Tag)<(10000*speicher->info->erscheinung.Jahr+100*speicher->info->erscheinung.Monat+speicher->info->erscheinung.Tag)) speicher = tmp; schritt_s = schritt_t;
-			break;
+				break;
 			case 4: if(tmp->info->genre<speicher->info->genre) speicher = tmp; schritt_s = schritt_t;
-			break;
+				break;
 			}
-			
+
 			if(b==2) switch(a)
 			{
 			case 1: if(tmp->info->cd_name>speicher->info->cd_name) speicher = tmp; schritt_s = schritt_t;
-			break;
+				break;
 			case 2: if(tmp->info->interpret_name>speicher->info->interpret_name) speicher = tmp; schritt_s = schritt_t;
-			break;
+				break;
 			case 3: if((10000*tmp->info->erscheinung.Jahr+100*tmp->info->erscheinung.Monat+tmp->info->erscheinung.Tag)>(10000*speicher->info->erscheinung.Jahr+100*speicher->info->erscheinung.Monat+speicher->info->erscheinung.Tag)) speicher = tmp; schritt_s = schritt_t;
-			break;
+				break;
 			case 4: if(tmp->info->genre>speicher->info->genre) speicher = tmp; schritt_s = schritt_t;
-			break;
+				break;
 			}
-		
+			naechsteCD (tmp);
+			schritt_t++;
 		}
 		if(tmp2 == NULL)
 		{
-				neu = speicher;
-				tmp2 = speicher;
+			neu = speicher;
+			tmp2 = speicher;
 		}
 		else
 		{
@@ -236,7 +234,7 @@ void sortieren (CD_Liste ** anker, int a, int b)
 		if (schritt_s==0) *anker = speicher->next;
 		else
 		{
-			for(i=0; i<schritt_s; i++) tmp = tmp->next;
+			for(i=1; i<schritt_s; i++) tmp = tmp->next;
 			tmp->next = speicher->next;
 		}
 
