@@ -8,25 +8,33 @@ void initListe (CD_Liste ** liste)
 }
 
 
-void loescheCD (CD_Liste ** liste, CD_Liste * element)
-//Loescht die Daten der CD, den Knoten und überbrückt
-//den vorherigen und den naechsten Knoten.
+void einfuegenListe (CD_Liste ** liste, CD_Info * cd)
+//Koppelt Daten der CD mit Knoten der Liste
 {
-	CD_Liste * naechstes_element = element->next;
-	CD_Liste * voriges_element = * liste;
-	int i;
-	if (voriges_element != NULL)
+	CD_Liste * letztes_element = NULL;
+	CD_Liste * neues_element = NULL;
+	int i = 0;
+	if (liste!=NULL && *liste!=NULL)
 	{
-		while (voriges_element->next != element);
-		{
-			voriges_element = voriges_element->next;
-		}
-		
-	}
+		letztes_element = *liste;
 
-	voriges_element->next = element->next;
-	free(element->info);
-	free(element);
+		for (i=0; ((letztes_element->next)!=NULL); i++)
+		{
+			letztes_element = letztes_element->next;
+		}
+	
+		neues_element = (CD_Liste*) malloc(sizeof(CD_Liste*));
+		letztes_element->next = neues_element;
+		neues_element->info = cd;
+		neues_element->next = NULL;
+	}
+	else
+	{
+		neues_element = (CD_Liste*) malloc(sizeof(CD_Liste*));
+		neues_element->info = cd;
+		neues_element->next = NULL;
+		*liste = neues_element;
+	}
 }
 
 
