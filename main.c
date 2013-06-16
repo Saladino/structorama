@@ -13,14 +13,14 @@ kann. Hier findet der Aufruf der Funktionen statt.
 
 void help(void)
 {
-		printf("(1) = Hilfe\n(2) = Aendern eines Elements\n(3) = Neues Element Einfuegen\n(4) = Sortieren der Liste\n(5) = Anzeigen der Aktuellen Liste\n(6) = Speichern der Liste\n(7) = Beenden des Programms\n(8) = Loeschen einer CD\n");
+	printf("(1) = Hilfe\n(2) = Aendern eines Elements\n(3) = Neues Element Einfuegen\n(4) = Sortieren der Liste\n(5) = Anzeigen der Aktuellen Liste\n(6) = Speichern der Liste\n(7) = Loeschen einer CD\n(8) = Beenden des Programms\n");
 }
 
 int main(void)
 {
 
-//Variablendeklaration
-  
+	//Variablendeklaration
+
 	int ende = 0;
 	int datei_vorhanden;
 	CD_Liste *anker = NULL;
@@ -29,7 +29,7 @@ int main(void)
 	int cd_nummer;
 
 
-//Überprüfung: Datei bereits vorhanden?
+	//Überprüfung: Datei bereits vorhanden?
 	initListe(&anker);
 	datei_vorhanden = dateivorhanden();
 	if (datei_vorhanden==1)
@@ -46,7 +46,7 @@ int main(void)
 			else if (eingabe2 != 'n')
 			{
 				printf("Ungueltige Eingabe!\n");
-			
+
 			}
 		}
 		while (eingabe2 != 'y' && eingabe2 != 'n');
@@ -59,8 +59,8 @@ int main(void)
 
 
 
-//Benutzeroberfläche
-	
+	//Benutzeroberfläche
+
 	while(ende==0)
 	{
 		printf("Bitte befehl eingeben\n");
@@ -69,7 +69,6 @@ int main(void)
 		switch (eingabe1)
 		{
 		case 1:    //1 = Hilfe
-			help();
 			break;
 		case 2:    //2 = Ändern eines Elements
 			printf("Bitte die Nummer der zu aendernden CD eingeben.\n");
@@ -91,10 +90,10 @@ int main(void)
 			else
 				printf("Liste ist leer und kann nicht in Datei gespeichert werden\n");
 			break;
-		case 7:     //7 = Beenden
+		case 8:     //8 = Beenden
 			ende = 1;
 			break;
-		case 8:		//8 = Element Löschen
+		case 7:		//7 = Element Löschen
 			printf("Bitte geben sie die Nummer der zu loeschenden CD an\n");
 			scanf("%i", &cd_nummer);
 			loescheCD_nr (&anker, cd_nummer);
@@ -105,6 +104,6 @@ int main(void)
 		printf("\n");
 	}
 
-//Herunterfahren des Programms
+	//Herunterfahren des Programms
 	return 0;
 }
