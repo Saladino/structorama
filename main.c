@@ -18,7 +18,7 @@ void help(void)
 
 void hilfe(void)
 {
-    printf("Guten Tag, sehr geehrter User\nDie Zahlen vor den einzelnen Menuefunktionen, dienen zum Steuern des Programms.\nEin druecken der jeweiligen Zahlentaste mit anschliessendem \nBestaetigen der Entertaste started die jeweilige Funktion.\nFuer weitere Infos werfen Sie bitte einen Blick ins Benutzerhand!\nWeiterhin noch viel Spass mit dem Programm.\n");
+    printf("Guten Tag, sehr geehrter User\nDie Zahlen vor den einzelnen Menuefunktionen, dienen zum Steuern des Programms.\nEin druecken der jeweiligen Zahlentaste mit anschliessendem \nBestaetigen der Entertaste started die jeweilige Funktion.\nFuer weitere Infos werfen Sie bitte einen Blick ins Benutzerhandbuch!\nWeiterhin noch viel Spass mit dem Programm.\n");
 }
 
 
