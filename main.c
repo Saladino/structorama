@@ -16,6 +16,12 @@ void help(void)
 	printf("(1) = Hilfe\n(2) = Aendern eines Elements\n(3) = Neues Element Einfuegen\n(4) = Sortieren der Liste\n(5) = Anzeigen der Aktuellen Liste\n(6) = Speichern der Liste\n(7) = Loeschen einer CD\n(8) = Beenden des Programms\n");
 }
 
+void hilfe(void)
+{
+    printf("Guten Tag, sehr geehrter User\nDie Zahlen vor den einzelnen Menuefunktionen, dienen zum Steuern des Programms.\nEin druecken der jeweiligen Zahlentaste mit anschliessendem \nBestaetigen der Entertaste started die jeweilige Funktion.\nFuer weitere Infos werfen Sie bitte einen Blick ins Benutzerhand!\nWeiterhin noch viel Spass mit dem Programm.\n");
+}
+
+
 int main(void)
 {
 
@@ -69,7 +75,8 @@ int main(void)
 		switch (eingabe1)
 		{
 		case 1:    //1 = Hilfe
-			break;
+            		hilfe();
+            		break;
 		case 2:    //2 = Ändern eines Elements
 			printf("Bitte die Nummer der zu aendernden CD eingeben.\n");
 			scanf("%i", &cd_nummer);
