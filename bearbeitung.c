@@ -33,10 +33,25 @@ void ausgebenSammlung (CD_Liste ** anker)
 
 void aendereCD (CD_Liste ** anker, int CD_nr)
 {
-	int i = 1;
-	CD_Liste *tmp = *anker;
-	for (i=1; i < CD_nr; i++) tmp = tmp->next;
-	aendereMerkmal (tmp->info);
+    int j=1;
+    CD_Liste *tmp = *anker;
+    while (tmp->next != NULL) 
+    {
+            tmp = tmp->next;
+            j++;
+
+
+    }
+
+
+    if(CD_nr<=j)
+    {
+        int i = 1;
+        tmp = *anker;
+        for (i=1; i < CD_nr; i++) tmp = tmp->next;
+        aendereMerkmal (tmp->info);
+    }
+    else printf("zu aendernde CD ist nicht vorhanden!\n");
 }
 
 int compare (const void * a, const void * b)
