@@ -13,20 +13,24 @@ CD_Info * einlesenCD (void)
 	do{
 		printf("Tag: ");
 		scanf("%i", &(cd->erscheinung.Tag));
+		fflush(stdin);
 	} while( (cd->erscheinung.Tag<1)||(31<cd->erscheinung.Tag));
 	do{
 		printf("Monat: ");
 		scanf("%i", &(cd->erscheinung.Monat));
+		fflush(stdin);
 	} while( (cd->erscheinung.Monat<1)||(12<cd->erscheinung.Monat));
 	do{
 		printf("Jahr: ");
 		scanf("%i", &(cd->erscheinung.Jahr));
+		fflush(stdin);
 	} while( (cd->erscheinung.Jahr<1)||(9999<cd->erscheinung.Jahr));
 	printf("\nGeben Sie das Genre an: ");
 	scanf("%s", cd->genre);
 	do{
 		printf("\nWieviele Songs wollen Sie eingeben: ");
 		scanf("%i", &(cd->song_anzahl));
+		fflush(stdin);
 	} while((cd->song_anzahl<0)||(21<cd->song_anzahl));
 	for (i=0; i < cd->song_anzahl; i++)
 	{
