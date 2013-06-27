@@ -71,6 +71,7 @@ int main(void)
 	{
 		printf("Bitte befehl eingeben\n");
 		help();
+		fflush(stdin);
 		scanf("%i", &eingabe1);
 		switch (eingabe1)
 		{

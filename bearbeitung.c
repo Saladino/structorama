@@ -67,6 +67,7 @@ void aendereMerkmal (CD_Info * cd)
 	printf("\nGeben Sie die in der Klammer stehenden Nummer an und bestaetigen Sie mit [ENTER]");
 	do{
 		printf("\nNamen(1) Interpret(2) Erscheinungsdatum(3) Genre(4) Songs(5)\n");
+		fflush(stdin);
 		scanf("%i", &a);
 	} while((a<1)||(5<a));
 
@@ -105,6 +106,7 @@ void aendereMerkmal (CD_Info * cd)
 			printf("\nGeben Sie die in der Klammer stehenden Nummer an und bestaetigen Sie mit [ENTER]");
 			do{
 				printf("\nHinzufuegen(1) Loeschen(2) Veraendern(3) Sortieren(4)\n");
+				fflush(stdin);
 				scanf("%i", &b);
 			} while((b<1)||(4<b));
 
@@ -126,6 +128,7 @@ void aendereMerkmal (CD_Info * cd)
 					}
 					do{
 						printf("\nEingabe der Songnummer um diesen zu loeschen: ");
+						fflush(stdin);
 						scanf("%i", &c);
 					} while((c<1)||(cd->song_anzahl<c));
 					for(i=c; i < cd->song_anzahl; i++) strcpy(cd->song[i-1].songname, cd->song[i].songname);
@@ -141,6 +144,7 @@ void aendereMerkmal (CD_Info * cd)
 					}
 					do{
 						printf("\nEingabe der Songnummer um diesen zu veraendern: ");
+						fflush(stdin);
 						scanf("%i", &c);
 					} while((c<1)||(cd->song_anzahl<c));
 					printf("Geben Sie den neuen Namen fuer %i an: ", c);
@@ -187,11 +191,13 @@ CD_Liste* sortiereSammlung (CD_Liste ** anker)
 
 	do{
 		printf("\nNamen(1) Interpret(2) Erscheinungsdatum(3) Genre(4)\n");
+		fflush(stdin);
 		scanf("%i", &a);
 	} while((a<1)||(4<a));
 
 	do{
 		printf("\nVorwaerts(1) oder Rueckwaerts(2): ");
+		fflush(stdin);
 		scanf("%i", &b);
 	} while((b<1)||(2<b));
 	return sortieren (anker, a, b);
