@@ -30,7 +30,7 @@ int main(void)
 	int ende = 0;
 	int datei_vorhanden;
 	CD_Liste *anker = NULL;
-	int eingabe1;
+	char eingabe1;
 	char eingabe2;
 	int cd_nummer;
 
@@ -44,7 +44,7 @@ int main(void)
 		{
 			printf("Es wurde eine gespeicherte CD-Sammlung gefunden, soll diese Geladen werden?(y/n)\n");
 			scanf("%c", &eingabe2);
-
+			fflush(stdin);
 			if ('y' == eingabe2)
 			{
 				einlesenDatei(&anker);
@@ -71,39 +71,41 @@ int main(void)
 	{
 		printf("Bitte befehl eingeben\n");
 		help();
+		eingabe1 = getchar();
 		fflush(stdin);
-		scanf("%i", &eingabe1);
 		switch (eingabe1)
 		{
-		case 1:    //1 = Hilfe
+		case '1':    //1 = Hilfe
             		hilfe();
             		break;
-		case 2:    //2 = Ändern eines Elements
+		case '2':    //2 = Ändern eines Elements
 			printf("Bitte die Nummer der zu aendernden CD eingeben.\n");
 			scanf("%i", &cd_nummer);
+			fflush(stdin);
 			aendereCD (&anker, cd_nummer);
 			break;
-		case 3:    //3 = Neues Element hinzufügen
+		case '3':    //3 = Neues Element hinzufügen
 			einfuegenListe (&anker, einlesenCD ());
 			break;
-		case 4:     //4 = Sortieren der Liste
+		case '4':     //4 = Sortieren der Liste
 			anker = sortiereSammlung (&anker);
 			break;
-		case 5:     //5 = Anzeigen der Liste
+		case '5':     //5 = Anzeigen der Liste
 			ausgebenSammlung (&anker);
 			break;
-		case 6:     //6 = Speichern der Liste in der Datei
+		case '6':     //6 = Speichern der Liste in der Datei
 			if (anker!=NULL)
 				speichereListe(&anker);
 			else
 				printf("Liste ist leer und kann nicht in Datei gespeichert werden\n");
 			break;
-		case 8:     //8 = Beenden
+		case '8':     //8 = Beenden
 			ende = 1;
 			break;
-		case 7:		//7 = Element Löschen
+		case '7':		//7 = Element Löschen
 			printf("Bitte geben sie die Nummer der zu loeschenden CD an\n");
 			scanf("%i", &cd_nummer);
+			fflush(stdin);
 			loescheCD_nr (&anker, cd_nummer);
 			break;
 		default:

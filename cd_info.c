@@ -7,8 +7,10 @@ CD_Info * einlesenCD (void)
 	cd = (CD_Info*) malloc (sizeof(CD_Info));
 	printf("\nGeben Sie den CD-Namen an: ");
 	scanf("%s", cd->cd_name);
+	fflush(stdin);
 	printf("\nGeben Sie den Interpreten an: ");
 	scanf("%s", cd->interpret_name);
+	fflush(stdin);
 	printf("\nGeben Sie das Erscheinungsdatum an:\n");
 	do{
 		printf("Tag: ");
@@ -27,6 +29,7 @@ CD_Info * einlesenCD (void)
 	} while( (cd->erscheinung.Jahr<1)||(9999<cd->erscheinung.Jahr));
 	printf("\nGeben Sie das Genre an: ");
 	scanf("%s", cd->genre);
+	fflush(stdin);
 	do{
 		printf("\nWieviele Songs wollen Sie eingeben: ");
 		scanf("%i", &(cd->song_anzahl));
@@ -36,6 +39,7 @@ CD_Info * einlesenCD (void)
 	{
 		printf("\nSong %i: ", i+1);
 		scanf("%s", &(cd->song[i].songname));
+		fflush(stdin);
 	}
 	return cd;
 }
